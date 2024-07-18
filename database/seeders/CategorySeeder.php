@@ -16,11 +16,11 @@ class CategorySeeder extends Seeder
         //
         $faker = Faker::create();
         DB::table('categories')->insert([
-            ['name' => 'Tâm lý'],
-            ['name' => 'Cuộc sống'],
-            ['name' => 'Lịch sử'],
-            ['name' => 'Xã hội'],
-            ['name' => 'Kỹ năng phát triển bản thân'],
+            ['name' => 'Louis Vuitton'],
+            ['name' => 'Gucci'],
+            ['name' => 'Chanel'],
+            ['name' => 'Dior'],
+            ['name' => 'Prada'],
         ]);
     }
 }

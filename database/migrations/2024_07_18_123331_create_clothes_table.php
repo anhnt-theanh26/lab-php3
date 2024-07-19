@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('price_old');
             $table->decimal('price_new');
             $table->integer('sold');
-            $table->string('image_url');
+            $table->string('avatar_prd');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

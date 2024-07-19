@@ -16,15 +16,15 @@ class ClothesSeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             DB::table('clothes')->insert([
-                'name' => $faker->text(20), 
-                'quantity' => rand(10, 50), 
-                'price_old' => rand(100000, 500000), 
-                'price_new' => rand(50000, 250000), 
-                'sold' => rand(10,50), 
-                'image_url' => $faker->imageUrl(), // Tạo URL hình ảnh ngẫu nhiên
-                'category_id' => rand(1,5),
+                'name' => $faker->text(50),
+                'quantity' => rand(10, 50),
+                'price_old' => rand(100000, 500000),
+                'price_new' => rand(50000, 250000),
+                'sold' => rand(10, 50),
+                'avatar_prd' => $faker->imageUrl(),
+                'category_id' => rand(1, 5),
             ]);
         }
     }

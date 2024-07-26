@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+
 class CategorySeeder extends Seeder
 {
     /**
@@ -13,14 +14,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // runed
         $faker = Faker::create();
         DB::table('categories')->insert([
-            ['name' => 'Louis Vuitton'],
-            ['name' => 'Gucci'],
-            ['name' => 'Chanel'],
-            ['name' => 'Dior'],
-            ['name' => 'Prada'],
+            ['name' => 'Apple'],
+            ['name' => 'Samsung'],
+            ['name' => 'Huawei'],
+            ['name' => 'Xiaomi'],
+            ['name' => 'Nokia'],
         ]);
     }
 }

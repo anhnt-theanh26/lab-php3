@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Asm\ClothesController;
+use App\Http\Controllers\asm\ProductController;
 use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,9 @@ use Illuminate\Support\Facades\Route;
 
 // asm
 // Route::get('home',)->name('home');
-Route::get('/', [ClothesController::class, 'index'])->name('/');
-Route::get('/detail/{id}', [ClothesController::class, 'detail'])->name('detail');
-Route::get('/products', [ClothesController::class, 'products'])->name('products');
-Route::get('/products-cate/{id}', [ClothesController::class, 'products_cate'])->name('products-cate');
+Route::get('/', [ProductController::class, 'index'])->name('/');
+Route::get('detail/{id}', [ProductController::class, 'detail'])->name('detail');
+Route::get('allPrd', [ProductController::class, 'allPrd'])->name('allPrd');
+Route::get('prdCate/{id}', [ProductController::class, 'prdCate'])->name('prdCate');
+Route::get('search', [ProductController::class, 'search'])->name('searchPrd');
+Route::post('/update-price', [ProductController::class, 'updatePrice'])->name('update.price');

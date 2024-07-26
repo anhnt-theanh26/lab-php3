@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
-class ImageSeeder extends Seeder
+class ProductDetailSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,22 +16,30 @@ class ImageSeeder extends Seeder
         // runed
         $faker = Faker::create();
         for ($i = 1; $i < 51; $i++) {
-            DB::table('images')->insert([
+            DB::table('product_details')->insert([
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'ram_id' => rand(1, 6),
+                    'price' => rand(1000000, 20000000),
+                    'quantity' => rand(1, 100),
                 ],
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'ram_id' => rand(1, 6),
+                    'price' => rand(1000000, 20000000),
+                    'quantity' => rand(1, 100),
                 ],
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'ram_id' => rand(1, 6),
+                    'price' => rand(1000000, 20000000),
+                    'quantity' => rand(1, 100),
                 ],
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'ram_id' => rand(1, 6),
+                    'price' => rand(1000000, 20000000),
+                    'quantity' => rand(1, 100),
                 ],
             ]);
         }

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models\asm;
+namespace App\Models\Asm;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Color extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'product_id',
-        'url',
+        'color',
     ];
 }

@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
-class ImageSeeder extends Seeder
+
+class ProductColorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,24 +14,23 @@ class ImageSeeder extends Seeder
     public function run(): void
     {
         // runed
-        $faker = Faker::create();
         for ($i = 1; $i < 51; $i++) {
-            DB::table('images')->insert([
+            DB::table('product_color')->insert([
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'color_id' => rand(1, 8),
                 ],
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'color_id' => rand(1, 8),
                 ],
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'color_id' => rand(1, 8),
                 ],
                 [
                     'product_id' => $i,
-                    'url' => $faker->imageUrl(),
+                    'color_id' => rand(1, 8),
                 ],
             ]);
         }

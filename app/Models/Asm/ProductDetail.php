@@ -15,4 +15,13 @@ class ProductDetail extends Model
         'price',
         'quantity',
     ];
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
+    public function color(){
+        return $this->belongsTo(Color::class);
+    }
+    public function ram(){
+        return $this->belongsTo(Ram::class);
+    }
 }

@@ -30,26 +30,42 @@ use Illuminate\Support\Facades\Route;
 
 
 // asm
-// Route::get('home',)->name('home');
-// Route::get('/', [ProductController::class, 'index'])->name('/');
-// Route::get('detail/{id}', [ProductController::class, 'detail'])->name('detail');
-// Route::get('allPrd', [ProductController::class, 'allPrd'])->name('allPrd');
-// Route::get('prdCate/{id}', [ProductController::class, 'prdCate'])->name('prdCate');
-// Route::get('search', [ProductController::class, 'search'])->name('searchPrd');
-// Route::post('/update-price', [ProductController::class, 'updatePrice'])->name('update.price');
+
+Route::prefix('/')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('/');
+    Route::get('detail/{id}', [ProductController::class, 'detail'])->name('detail');
+    Route::get('allPrd', [ProductController::class, 'allPrd'])->name('allPrd');
+    Route::get('prdCate/{id}', [ProductController::class, 'prdCate'])->name('prdCate');
+    Route::get('search', [ProductController::class, 'search'])->name('searchPrd');
+    Route::post('/update-price', [ProductController::class, 'updatePrice'])->name('update.price');
+});
+
+Route::prefix('admin')->group(function () {
+
+    // danh mục
+    Route::get('/', [ProductController::class, 'listCate'])->name('admin');
+    Route::get('formAddCate', [ProductController::class, 'formAddCate'])->name('admin.formAddCate');
+    Route::post('addCate', [ProductController::class, 'addCate'])->name('admin.addCate');
+    Route::get('formUpdateCate/{cate}', [ProductController::class, 'formUpdateCate'])->name('admin.formUpdateCate');
+    Route::put('updateCate/{cate}', [ProductController::class, 'updateCate'])->name('admin.updateCate');
+    Route::delete('deleteCate/{cate}', [ProductController::class, 'deleteCate'])->name('admin.deleteCate');
+    // sản phẩm
+    Route::get('products', [ProductController::class, 'products'])->name('admin.products');
+    Route::get('formAddPrd', [ProductController::class, 'formAddPrd'])->name('admin.formAddPrd');
+    Route::get('formAddUpdate/{product}', [ProductController::class, 'formAddUpdate'])->name('admin.formAddUpdate');
+    Route::put('updatePrd/{product}', [ProductController::class, 'updatePrd'])->name('admin.updatePrd');
 
 
-
+});
 
 // lab5
-Route::get('/', [MovieController::class, 'index'])->name('/');
-Route::prefix('lab5')->group(function () {
-    Route::get('/', [MovieController::class, 'index'])->name('/');
-    Route::get('formAdd', [MovieController::class, 'formAdd'])->name('lab5.formAdd');
-    Route::post('add', [MovieController::class, 'add'])->name('lab5.add');
-    Route::delete('delete/{movie}', [MovieController::class, 'delete'])->name('lab5.delete');
-    Route::get('formUpdate/{movie}', [MovieController::class, 'formUpdate'])->name('lab5.formUpdate');
-    Route::put('update/{movie}', [MovieController::class, 'update'])->name('lab5.update');
-    Route::get('detail/{movie}', [MovieController::class, 'detail'])->name('lab5.detail');
-    Route::get('search', [MovieController::class, 'search'])->name('lab5.search');
-});
+// Route::prefix('lab5')->group(function () {
+//     Route::get('/', [MovieController::class, 'index'])->name('/');
+//     Route::get('formAdd', [MovieController::class, 'formAdd'])->name('lab5.formAdd');
+//     Route::post('add', [MovieController::class, 'add'])->name('lab5.add');
+//     Route::delete('delete/{movie}', [MovieController::class, 'delete'])->name('lab5.delete');
+//     Route::get('formUpdate/{movie}', [MovieController::class, 'formUpdate'])->name('lab5.formUpdate');
+//     Route::put('update/{movie}', [MovieController::class, 'update'])->name('lab5.update');
+//     Route::get('detail/{movie}', [MovieController::class, 'detail'])->name('lab5.detail');
+//     Route::get('search', [MovieController::class, 'search'])->name('lab5.search');
+// });

@@ -15,7 +15,7 @@ class ProductColorSeeder extends Seeder
     {
         // runed
         for ($i = 1; $i < 51; $i++) {
-            DB::table('product_color')->insert([
+            DB::table('product_colors')->insert([
                 [
                     'product_id' => $i,
                     'color_id' => rand(1, 8),

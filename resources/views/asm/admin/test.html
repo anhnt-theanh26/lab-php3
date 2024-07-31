@@ -1,0 +1,10 @@
+<input type="file" class="form-control" name="image" id="image">
+<img id="img" src="" alt="" width="50px">
+<script>
+    var image = document.querySelector('#image');
+    var img = document.querySelector('#img');
+    image.addEventListener('change', function(e){
+        e.preventDefault();
+        img.src = URL.createObjectURL(files[0])
+    })
+</script>

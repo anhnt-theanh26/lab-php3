@@ -8,7 +8,7 @@
                 <div class="box bg-light rounded-4 border" style="height: 400px;">
                     <a href="{{ route('detail', $item->id) }}" class="link-underline-light text-black">
                         <div class="img d-flex justify-content-center align-items-center" style="height: 270px;">
-                            <img src="{{ $item->image }}" class="d-block rounded-3" alt="..."
+                            <img src="{{ asset('storage/'. $item->image) }}" class="d-block rounded-3" alt="..."
                                 style="width: 90%; height: 90%; object-fit: cover; object-position: center;">
                         </div>
                         <div class="px-2 py-2" style="height: 70px;">

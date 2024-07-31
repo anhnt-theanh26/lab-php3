@@ -8,7 +8,7 @@
                     <div class="carousel-inner py-1">
                         @foreach ($images as $index => $image)
                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                <img src="{{ $image->url }}" class="d-block w-100"
+                                <img src="{{ asset('storage/'. $image->url) }}" class="d-block w-100"
                                     style="height: 400px; object-fit: cover; object-position: center;"
                                     alt="Ảnh sản phẩm {{ $index + 1 }}">
                             </div>
@@ -28,7 +28,7 @@
                 <div class="row py-1" id="thumbnailContainer">
                     @foreach ($images as $index => $image)
                         <div class="col-lg-3 col-md-3 col-3">
-                            <img src="{{ $image->url }}" class="thumbnail img-fluid"
+                            <img src="{{ asset('storage/'. $image->url) }}" class="thumbnail img-fluid"
                                 alt="Thumbnail {{ $index + 1 }}"
                                 data-bs-target="#carouselExampleControlsNoTouching"
                                 data-bs-slide-to="{{ $index }}"

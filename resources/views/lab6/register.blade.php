@@ -55,6 +55,8 @@
                 <label for="avatar" class="form-label">Avatar</label>
                 <input type="file" class="form-control" id="avatar" placeholder="avatar" name="avatar"
                     value="{{ old('avatar') }}">
+                    <img src=""  style="object-fit: cover; object-position: center;" width="50px" height="50px"
+                    id="avt" class="rounded-pill pt-1">
                 @error('avatar')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -65,5 +67,17 @@
         </form>
     </div>
 </body>
+<script>
+    const avt = document.getElementById('avt');
+    const avatar = document.getElementById('avatar');
 
+    avatar.addEventListener('change', function(e) {
+        e.preventDefault();
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            avt.src = event.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+    });
+</script>
 </html>

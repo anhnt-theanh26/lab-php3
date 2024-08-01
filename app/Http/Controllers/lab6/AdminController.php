@@ -17,7 +17,11 @@ class AdminController extends Controller
 
     public function listUser(User $user)
     {
-        $users = User::where('id', '!=', $user->id)->paginate(5);
+        // $users = User::where('id', '!=', $user->id)->paginate(5);
+        $users = User::where('id', '!=', $user->id)
+             ->where('role', 'user')
+             ->paginate(5);
+
         return view('lab6.list', compact('users'));
     }
 
@@ -92,7 +96,8 @@ class AdminController extends Controller
             'fullname' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'passwordN' => 'nullable|string|min:3|max:50|confirmed',
+            'passwordN' => 'nullable|string|min:3|max:50',
+            // 'passwordN' => 'nullable|string|min:3|max:50|confirmed',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
         $old_avatar = $user['avatar'];

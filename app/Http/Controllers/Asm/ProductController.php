@@ -206,12 +206,12 @@ class ProductController extends Controller
         $old_image = $product->image;
 
         if ($request->hasFile('image')) {
-            $path_image = $request->file('image')->store('images', 'public');
+            $path_image = $request->file('image')->store('images');
             $data['image'] = $path_image;
 
             // Xóa hình ảnh cũ
-            if ($old_image && file_exists(storage_path('app/public/' . $old_image))) {
-                unlink(storage_path('app/public/' . $old_image));
+            if ($old_image && file_exists(storage_path('image/' . $old_image))) {
+                unlink(storage_path('image/' . $old_image));
             }
         }
 

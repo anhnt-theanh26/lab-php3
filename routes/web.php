@@ -31,8 +31,71 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/update/{id}', [BooksController::class, 'update'])->name('update');
 
 
-// asm
 
+Route::prefix('/')->group(function () {
+    Route::get('/', function () {
+        return view('index');
+    });
+    Route::get('client', [ClothesController::class, 'index'])->name('/');
+    Route::get('admin', [AdminController::class, 'formLogin'])->name('admin.formLogin');
+});
+
+
+// asm old
+Route::prefix('client')->group(function () {
+    Route::get('/', [ClothesController::class, 'index'])->name('/');
+    Route::get('/detail/{id}', [ClothesController::class, 'detail'])->name('detail');
+    Route::get('/products', [ClothesController::class, 'products'])->name('products');
+    Route::get('/products-cate/{id}', [ClothesController::class, 'products_cate'])->name('products-cate');
+    Route::get('/search', [ClothesController::class, 'search'])->name('search');
+});
+
+// asm 2
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'formLogin'])->name('admin.formLogin');
+    Route::post('login', [AdminController::class, 'login'])->name('admin.login');
+    Route::get('formRegister', [AdminController::class, 'formRegister'])->name('admin.formRegister');
+    Route::post('register', [AdminController::class, 'register'])->name('admin.register');
+    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+});
+
+Route::middleware(Adminmiddleware::class)->group(function () {
+    // admin
+    Route::get('account', [AdminController::class, 'account'])->name('admin.account');
+    Route::get('listUser/{user}', [AdminController::class, 'listUser'])->name('admin.listUser');
+    Route::get('onAccount/{user}', [AdminController::class, 'onAccount'])->name('admin.onAccount');
+    Route::get('offAccount/{user}', [AdminController::class, 'offAccount'])->name('admin.offAccount');
+    Route::put('update/{user}', [AdminController::class, 'update'])->name('admin.update');
+    Route::get('formUpdatePassword/{user}', [AdminController::class, 'formUpdatePassword'])->name('admin.formUpdatePassword');
+    Route::put('updatePassword', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');
+
+    
+    // danh mục
+    Route::get('categories', [ClothesController::class, 'categories'])->name('admin.categories');
+    Route::get('cateFormUpdate/{cate}', [ClothesController::class, 'cateFormUpdate'])->name('admin.cateFormUpdate');
+    Route::put('cateUpdate/{cate}', [ClothesController::class, 'cateUpdate'])->name('admin.cateUpdate');
+    Route::get('cateFormAdd', [ClothesController::class, 'cateFormAdd'])->name('admin.cateFormAdd');
+    Route::post('cateAdd', [ClothesController::class, 'cateAdd'])->name('admin.cateAdd');
+    Route::delete('cateDelete/{cate}', [ClothesController::class, 'cateDelete'])->name('admin.cateDelete');
+
+    // sản phẩm
+    Route::get('products', [ClothesController::class, 'productsAdmin'])->name('admin.productsAdmin');
+    Route::get('prdFormUpdate/{clo}', [ClothesController::class, 'prdFormUpdate'])->name('admin.prdFormUpdate');
+    Route::put('prdUpdate/{clo}', [ClothesController::class, 'prdUpdate'])->name('admin.prdUpdate');
+    Route::get('prdFormAdd', [ClothesController::class, 'prdFormAdd'])->name('admin.prdFormAdd');
+    Route::post('prdAdd', [ClothesController::class, 'prdAdd'])->name('admin.prdAdd');
+    Route::delete('prdDelete/{clo}', [ClothesController::class, 'prdDelete'])->name('admin.prdDelete');
+});
+
+
+
+// Route::middleware(AdminMiddleware::class)->get('home', [AdminController::class, 'home'])->name('admin.home');
+// Route::middleware(AdminMiddleware::class)->get('listUser/{user}', [AdminController::class, 'listUser'])->name('admin.listUser');
+// Route::middleware(AdminMiddleware::class)->get('onAccount/{user}', [AdminController::class, 'onAccount'])->name('admin.onAccount');
+// Route::middleware(AdminMiddleware::class)->get('offAccount/{user}', [AdminController::class, 'offAccount'])->name('admin.offAccount');
+
+
+// asm new
 // Route::prefix('/')->group(function () {
 //     Route::get('/', [ProductController::class, 'index'])->name('/');
 //     Route::get('detail/{id}', [ProductController::class, 'detail'])->name('detail');
@@ -74,16 +137,16 @@ use Illuminate\Support\Facades\Route;
 
 
 // lab 6
-Route::prefix('lab6')->group(function () {
-    Route::get('/', [AdminController::class, 'formLogin'])->name('lab6.formLogin');
-    Route::post('login', [AdminController::class, 'login'])->name('lab6.login');
-    Route::get('formRegister', [AdminController::class, 'formRegister'])->name('lab6.formRegister');
-    Route::post('register', [AdminController::class, 'register'])->name('lab6.register');
-    Route::get('logout', [AdminController::class, 'logout'])->name('lab6.logout');
-    Route::put('update/{user}', [AdminController::class, 'update'])->name('lab6.update');
-});
+// Route::prefix('lab6')->group(function () {
+//     Route::get('/', [AdminController::class, 'formLogin'])->name('lab6.formLogin');
+//     Route::post('login', [AdminController::class, 'login'])->name('lab6.login');
+//     Route::get('formRegister', [AdminController::class, 'formRegister'])->name('lab6.formRegister');
+//     Route::post('register', [AdminController::class, 'register'])->name('lab6.register');
+//     Route::get('logout', [AdminController::class, 'logout'])->name('lab6.logout');
+//     Route::put('update/{user}', [AdminController::class, 'update'])->name('lab6.update');
+// });
 
-Route::middleware(AdminMiddleware::class)->get('home', [AdminController::class, 'home'])->name('lab6.home');
-Route::middleware(AdminMiddleware::class)->get('listUser/{user}', [AdminController::class, 'listUser'])->name('lab6.listUser');
-Route::middleware(AdminMiddleware::class)->get('onAccount/{user}', [AdminController::class, 'onAccount'])->name('lab6.onAccount');
-Route::middleware(AdminMiddleware::class)->get('offAccount/{user}', [AdminController::class, 'offAccount'])->name('lab6.offAccount');
+// Route::middleware(AdminMiddleware::class)->get('home', [AdminController::class, 'home'])->name('lab6.home');
+// Route::middleware(AdminMiddleware::class)->get('listUser/{user}', [AdminController::class, 'listUser'])->name('lab6.listUser');
+// Route::middleware(AdminMiddleware::class)->get('onAccount/{user}', [AdminController::class, 'onAccount'])->name('lab6.onAccount');
+// Route::middleware(AdminMiddleware::class)->get('offAccount/{user}', [AdminController::class, 'offAccount'])->name('lab6.offAccount');

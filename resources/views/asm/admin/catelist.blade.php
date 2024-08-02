@@ -1,30 +1,26 @@
 @extends('asm.admin.layout')
 @section('title', 'Danh mục')
 @section('content')
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="{{ route('admin.formAddCate') }}" class="btn btn-success">Thêm mới</a>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-2">
+        <a href="{{ route('admin.cateFormAdd') }}" class="btn btn-success me-md-2" type="button">Thêm mới</a>
     </div>
-    @if (session('addCate'))
+    @if (session('deleteCateSuccess'))
         <div class="alert alert-success" role="alert">
-            {{ session('addCate') }}
+            {{ session('deleteCateSuccess') }}
         </div>
     @endif
-    @if (session('updateCate'))
+    @if (session('addCateSuccess'))
         <div class="alert alert-success" role="alert">
-            {{ session('updateCate') }}
+            {{ session('addCateSuccess') }}
         </div>
     @endif
-    @if (session('deleteCate'))
-        <div class="alert alert-success">
-            {{ session('deleteCate') }}
-        </div>
-    @endif
+    <h4>Danh mục</h4>
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 1%" scope="col">ID</th>
-                <th style="width: 15%" scope="col">Name</th>
-                <th style="width: 20%" scope="col">Action</th>
+                <th style="width: 10px" scope="col">#</th>
+                <th style="width: 30px" scope="col">Name</th>
+                <th style="width: 60px" scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -33,17 +29,16 @@
                     <th scope="row">{{ $cate->id }}</th>
                     <td>{{ $cate->name }}</td>
                     <td>
-                        <a href="{{ route('admin.formUpdateCate', $cate) }}" class="btn btn-warning">Sửa</a>
-                        <form action="{{ route('admin.deleteCate', $cate) }}" method="Post">
+                        <a href="{{ route('admin.cateFormUpdate', $cate) }}" class="btn btn-warning me-md-2"
+                            type="button">Sửa</a>
+                        <form action="{{ route('admin.cateDelete', $cate) }}" method="post">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Xóa danh mục')">Xóa</button>
+                            @method('delete')
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Xóa danh mục sản phẩm')">Xóa</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $categories->links() }}
 @endsection

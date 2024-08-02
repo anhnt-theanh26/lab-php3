@@ -126,14 +126,14 @@ class ProductController extends Controller
     public function listCate()
     {
         $categories = Category::orderByDesc('id')->paginate(5);
-        return view('asm.admin.catelist', compact('categories'));
+        return view('test.admin.catelist', compact('categories'));
     }
 
 
     public function formAddCate()
     {
         $categories = Category::all();
-        return view('asm.admin.cateadd', compact('categories'));
+        return view('test.admin.cateadd', compact('categories'));
     }
 
     public function addCate(Request $request)
@@ -147,7 +147,7 @@ class ProductController extends Controller
 
     public function formUpdateCate(Category $cate)
     {
-        return view('asm.admin.cateupdate', compact('cate'));
+        return view('test.admin.cateupdate', compact('cate'));
     }
 
     public function updateCate(Request $request, Category $cate)
@@ -168,7 +168,7 @@ class ProductController extends Controller
     public function products()
     {
         $products = Product::paginate(8);
-        return view('asm.admin.prdlist', compact('products'));
+        return view('test.admin.prdlist', compact('products'));
     }
 
     public function formAddUpdate(Product $product)
@@ -181,7 +181,7 @@ class ProductController extends Controller
         $productColors = ProductColor::where('product_id', $product->id)->get();
         $images = Image::where('product_id', $product->id)->get();
         // dd($productColors);
-        return view('asm.admin.prdupdate', compact('product', 'productsDetails', 'categories', 'rams', 'colors', 'productColors', 'images'));
+        return view('test.admin.prdupdate', compact('product', 'productsDetails', 'categories', 'rams', 'colors', 'productColors', 'images'));
     }
 
 
@@ -265,7 +265,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $colors = Color::all();
         $rams = Ram::all();
-        return view('asm.admin.prdadd', compact('categories', 'colors', 'rams'));
+        return view('test.admin.prdadd', compact('categories', 'colors', 'rams'));
     }
 
     // public function updatePrd(Request $request, Product $product)

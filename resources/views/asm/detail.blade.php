@@ -122,7 +122,7 @@
                     <div class="box bg-light rounded-4 border" style="height: 400px;">
                         <a href="{{ route('detail', $item->id) }}" class="link-underline-light text-black">
                             <div class="img d-flex justify-content-center align-items-center" style="height: 270px;">
-                                <img src="{{$item->avatar_prd}}"
+                                <img src="{{$item->image_url}}"
                                     class="d-block rounded-3" alt="..."
                                     style="width: 90%; height: 90% ;object-fit: cover; object-position: center;">
                             </div>

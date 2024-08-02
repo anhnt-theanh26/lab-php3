@@ -19,6 +19,6 @@ class AdminMiddleware
         if (Auth::check()) {
             return $next($request);
         }
-        return redirect()->route('lab6.formLogin')->with('error', 'Bạn cần đăng nhập để truy cập trang quản trị!');
+        return redirect()->route('admin.formLogin')->with('error', 'Bạn cần đăng nhập để truy cập trang quản trị!');
     }
 }

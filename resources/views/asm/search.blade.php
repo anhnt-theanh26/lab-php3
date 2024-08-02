@@ -2,13 +2,15 @@
 @section('title', 'Sản phẩm')
 @section('content')
     <div class="row">
-        <h2 class="form-control-plaintext">Sản phẩm của {{ $namecate->name }}</h2>
+        <h2 class="form-control-plaintext">
+            Bạn muốn tìm: <span class="text-danger"> {{ $search }}</span>
+        </h2>
         @foreach ($clothes as $item)
             <div class="col-lg-3 col-md-4 col-sm-6 col-12 pt-3">
                 <div class="box bg-light rounded-4 border" style="height: 400px;">
                     <a href="{{ route('detail', $item->id) }}" class="link-underline-light text-black">
                         <div class="img d-flex justify-content-center align-items-center" style="height: 270px;">
-                            <img src="{{$item->image_url}}" class="d-block rounded-3" alt="..."
+                            <img src="{{ $item->image_url }}" class="d-block rounded-3" alt="..."
                                 style="width: 90%; height: 90% ;object-fit: cover; object-position: center;">
                         </div>
                         <div class="px-2 py-2" style="height: 70px;">

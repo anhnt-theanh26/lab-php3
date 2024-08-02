@@ -16,43 +16,49 @@
 <body>
     <header class="bg-danger-subtle">
         <div class="container">
-            <nav class="navbar">
-                <div class="container">
-                    @if (Auth::user()->role == 'admin')
-                        <a class="navbar-brand" aria-current="page"
-                            href="{{ route('lab6.listUser', Auth::user()) }}">List</a>
-                    @endif
-                    
-                    <nav class="navbar navbar-expand-lg">
-                        <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse pt-2" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    {{-- <li class="nav-item">
-                                        <p class="nav-link text-black" href="">Username: <span
-                                                class="text-white">{{ Auth::user()->username }}</span></p>
-                                    </li> --}}
-                                    <li class="nav-item">
-                                        <a class="nav-link text-black" href="{{ route('lab6.home') }}"><img src="{{ asset('storage/'.Auth::user()->avatar ) }}" alt="" height="25px" width="25px" class="rounded-pill" style="object-fit: cover; object-position: center;"></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-black" href="{{ route('lab6.logout') }}">Logout:
-                                            {{ Auth::user()->username }}</a>
-                                    </li>
-                                </ul>
-                            </div>
+            <nav class="navbar navbar-expand-lg bg-danger-subtle">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Danh mục</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                @if (Auth::user()->role == 'admin')
+                                    <a class="nav-link active"
+                                        href="{{ route('admin.listUser', Auth::user()) }}">User</a>
+                                @endif
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ route('admin.home') }}">
+                                        <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt=""
+                                            height="25px" width="25px" class="rounded-pill"
+                                            style="object-fit: cover; object-position: center;">
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ route('admin.logout') }}">Logout:
+                                        <span class="badge badge-danger bg-danger">{{ Auth::user()->username }}</span></a>
+                                </li>
+                            </ul>
                         </div>
-                    </nav>
+                    </div>
                 </div>
             </nav>
-
         </div>
     </header>
-    <div class="container pt-1">
+    <div class="container">
         @if (session('loginSuccess'))
             <div class="alert alert-success" role="alert">
                 {{ session('loginSuccess') }}
@@ -63,7 +69,7 @@
                 {{ session('updateSuccess') }}
             </div>
         @endif
-        <form action="{{ route('lab6.update', Auth::user()) }}" method="post" class="pt-5"
+        <form action="{{ route('admin.update', Auth::user()) }}" method="post" class="pt-3"
             enctype="multipart/form-data">
             @csrf
             @method('put')
@@ -110,7 +116,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-success">Update</button>
-            {{-- <a href="{{ route('lab6.formRegister') }}" class="btn btn-warning">Register</a> --}}
+            {{-- <a href="{{ route('admin.formRegister') }}" class="btn btn-warning">Register</a> --}}
         </form>
     </div>
 </body>

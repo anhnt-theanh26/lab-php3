@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\lab6;
 
 use App\Http\Controllers\Controller;
+use App\Models\Asm\Clothes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -37,6 +39,12 @@ class AdminController extends Controller
         $user['active'] = 0;
         $user->update();
         return redirect()->back()->with('userOfAccount', "Ngừng hoạt động tài khoản $user->fullName");
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        return redirect()->back()->with('deleteuserseccess', 'Xóa thành công tài khoản');
     }
     public function formRegister()
     {
@@ -149,5 +157,14 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->with('passError', 'Sai mật khẩu');
         }
+    }
+
+    public function thongke()
+    {
+        $users = User::query()->where('role', '=', 'user')->count();
+        $sold = Clothes::query()->sum('sold');
+        $doanhthu = Clothes::select(DB::raw('SUM(price_new * sold) AS total_revenue'))
+            ->value('total_revenue');
+        return view('asm.admin.thongke', compact('users', 'sold', 'doanhthu'));
     }
 }

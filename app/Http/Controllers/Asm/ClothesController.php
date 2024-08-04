@@ -159,4 +159,7 @@ class ClothesController extends Controller
         Clothes::create($data);
         return redirect()->route('admin.productsAdmin')->with('addPrd', 'Thêm sản phẩm thành công');
     }
+
+
+    
 }

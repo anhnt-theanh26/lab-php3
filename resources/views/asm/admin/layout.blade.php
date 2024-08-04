@@ -32,6 +32,9 @@
                                 <a class="nav-link active" aria-current="page" href="{{ route('admin.productsAdmin') }}">Sản phẩm</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('admin.thongke') }}">Thống kê</a>
+                            </li>
+                            <li class="nav-item">
                                 @if (Auth::user()->role == 'admin')
                                     <a class="nav-link active"
                                         href="{{ route('admin.listUser', Auth::user()) }}">User</a>

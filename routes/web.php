@@ -68,8 +68,8 @@ Route::middleware(Adminmiddleware::class)->group(function () {
     Route::put('update/{user}', [AdminController::class, 'update'])->name('admin.update');
     Route::get('formUpdatePassword/{user}', [AdminController::class, 'formUpdatePassword'])->name('admin.formUpdatePassword');
     Route::put('updatePassword', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');
+    Route::delete('deleteUser/{user}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 
-    
     // danh mục
     Route::get('categories', [ClothesController::class, 'categories'])->name('admin.categories');
     Route::get('cateFormUpdate/{cate}', [ClothesController::class, 'cateFormUpdate'])->name('admin.cateFormUpdate');
@@ -85,6 +85,10 @@ Route::middleware(Adminmiddleware::class)->group(function () {
     Route::get('prdFormAdd', [ClothesController::class, 'prdFormAdd'])->name('admin.prdFormAdd');
     Route::post('prdAdd', [ClothesController::class, 'prdAdd'])->name('admin.prdAdd');
     Route::delete('prdDelete/{clo}', [ClothesController::class, 'prdDelete'])->name('admin.prdDelete');
+
+    // thống kê
+    Route::get('thongke', [AdminController::class, 'thongke'])->name('admin.thongke');
+
 });
 
 

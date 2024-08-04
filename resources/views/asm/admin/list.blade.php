@@ -13,7 +13,11 @@
                 {{ session('userOfAccount') }}
             </div>
         @endif
-
+        @if (session('deleteuserseccess'))
+            <div class="alert alert-success" role="alert">
+                {{ session('deleteuserseccess') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -57,6 +61,14 @@
                                     <li><a class="dropdown-item" href="{{ route('admin.offAccount', $user) }}"
                                             onclick="return confirm('Ngừng hoạt động tài khoản')">Ngừng
                                             hoạt động</a></li>
+                                    <li>
+                                        <form action="{{ route('admin.deleteUser', $user) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="dropdown-item"
+                                                onclick="return confirm('Xóa tài khoản')">Xóa</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                             {{-- <a href="" class="btn btn-warning">Sua</a>

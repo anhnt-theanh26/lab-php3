@@ -30,13 +30,13 @@ class AdminController extends Controller
 
     public function onAccount(User $user)
     {
-        $user['active'] = 1;
+        $user['active'] = true;
         $user->update();
         return redirect()->back()->with('userOnAccount', "Hoạt động tài khoản $user->fullName");
     }
     public function offAccount(User $user)
     {
-        $user['active'] = 0;
+        $user['active'] = false;
         $user->update();
         return redirect()->back()->with('userOfAccount', "Ngừng hoạt động tài khoản $user->fullName");
     }

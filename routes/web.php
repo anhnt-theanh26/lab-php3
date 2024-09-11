@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/update/{id}', [BooksController::class, 'update'])->name('update');
 
 
-
+// chọn admin or client
 Route::prefix('/')->group(function () {
     Route::get('/', function () {
         return view('index');

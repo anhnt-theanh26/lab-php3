@@ -59,7 +59,7 @@ Route::prefix('admin')->group(function () {
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
-Route::middleware(Adminmiddleware::class)->group(function () {
+Route::middleware('adminMiddleware')->group(function () {
     // admin
     Route::get('account', [AdminController::class, 'account'])->name('admin.account');
     Route::get('listUser/{user}', [AdminController::class, 'listUser'])->name('admin.listUser');
